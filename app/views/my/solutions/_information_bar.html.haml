@@ -11,10 +11,6 @@
       %br
       Once your other solutions on this track have been mentored you may request mentoring for this.
 
--elsif @solution.track_in_mentored_mode? && !@solution.mentoring_requested?
-  .notifications-bar
-    .notification Your exercise has been submitted successfully.
-
 -elsif @solution.completed?
   -if @solution.published?
     .notifications-bar
@@ -37,6 +33,11 @@
         =icon :bell
         %span.text A mentor has approved this solution
         =link_to "Complete exercise", [:complete, :my, @solution], method: :patch, remote: true
+
+-elsif @solution.track_in_mentored_mode? && !@solution.mentoring_requested?
+  .notifications-bar
+    .notification
+      Your exercise has been submitted successfully. You may mark it as completed, browse other solutions, or request mentoring.
 
 -elsif @iteration.discussion_post_notifications_for_user.unread.size > 0
   .notifications-bar
